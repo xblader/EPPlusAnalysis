@@ -25,10 +25,10 @@ namespace TeesteEPPlus
             //sheet.Cells["A13"].Value = "teste";
 
             var lista = Builder<Etapa>.CreateListOfSize(10).Build();
-            int linha = 10;
+            int linha = 11;
             int numerocolunas = 7;
             //copia cabecalho...
-            sheet.Cells[1, 1, 3, numerocolunas].Copy(sheet.Cells[7, 1, 9, numerocolunas]);
+            sheet.Cells[1, 1, 4, numerocolunas].Copy(sheet.Cells[7, 1, 10, numerocolunas]);
 
             var modelTable = sheet.Cells[linha, 1, linha + lista.Count, numerocolunas];
 
@@ -40,7 +40,7 @@ namespace TeesteEPPlus
             modelTable.Style.WrapText = true;
             var cellFont = modelTable.Style.Font;
             cellFont.SetFromFont(new Font("Arial", 8));
-            modelTable.AutoFitColumns();
+            //modelTable.AutoFitColumns();
 
             foreach (var item in lista)
             {
