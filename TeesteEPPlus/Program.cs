@@ -24,13 +24,15 @@ namespace TeesteEPPlus
                    .With(x => x.Tipo = "Trabalho a Frio")
                 .Build();
 
+            var grupos = lista.GroupBy(x => x.Tipo).Select(x => new GrupoModel { Key = x.Key, Lista = x.ToList() }).ToList();
+
             using (ExcelEtapaPTHandler handler = new ExcelEtapaPTHandler(AppDomain.CurrentDomain.BaseDirectory + @"Excel\Template.xlsx"))
             {
-                int linha = 10;
+                int linha = 3;
 
                 handler.SelecionarSheet("Planilha1");
 
-                handler.CopiarCabecalho();
+                linha = handler.CopiarCabecalho(linha);
 
                 handler.SetFormatacaoLinhas(linha, lista.Count);
 

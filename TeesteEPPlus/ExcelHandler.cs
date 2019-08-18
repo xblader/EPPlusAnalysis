@@ -33,9 +33,12 @@ namespace TeesteEPPlus
             arquivoExcel.Dispose();
         }
 
-        internal void CopiarCabecalho()
+        internal int CopiarCabecalho(int linha)
         {
-            sheetselecionado.Cells[1, 1, 4, numerocolunas].Copy(sheetselecionado.Cells[7, 1, 10, numerocolunas]);
+            int tamanhocabecalho = 4;
+            var sheetmodelo = arquivoExcel.Workbook.Worksheets["Modelo"];
+            sheetmodelo.Cells[1, 1, tamanhocabecalho, numerocolunas].Copy(sheetselecionado.Cells[linha, 1, linha + tamanhocabecalho, numerocolunas]);
+            return linha + tamanhocabecalho;
         }
 
         internal void InsereTotal(int linha, int count)
@@ -46,6 +49,8 @@ namespace TeesteEPPlus
 
         internal void SalvaExcel()
         {
+            var worksheet = arquivoExcel.Workbook.Worksheets.SingleOrDefault(x => x.Name == "Modelo");
+            arquivoExcel.Workbook.Worksheets.Delete(worksheet);
             arquivoExcel.Save();
         }
 
