@@ -43,7 +43,9 @@ namespace TeesteEPPlus
                     handler.InsereTotal(linha + grupo.Lista.Count, grupo.Lista.Count);
 
                     linha += grupo.Lista.Count + 3;
-                }                
+                }
+
+                handler.RemoveColuna();
 
                 handler.SalvaExcel();
             }

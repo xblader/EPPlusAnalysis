@@ -47,6 +47,11 @@ namespace TeesteEPPlus
             sheetselecionado.Cells[linha, 1].Value = key;
         }
 
+        internal void RemoveColuna()
+        {
+            sheetselecionado.DeleteColumn(4);
+        }
+
         internal void InsereTotal(int linha, int count)
         {
             sheetselecionado.Cells[linha, 1, linha, numerocolunas].Merge = true;
