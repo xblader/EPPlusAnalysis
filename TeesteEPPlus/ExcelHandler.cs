@@ -33,12 +33,18 @@ namespace TeesteEPPlus
             arquivoExcel.Dispose();
         }
 
-        internal int CopiarCabecalho(int linha)
+        internal int CopiarCabecalho(int linha,string titulo)
         {
             int tamanhocabecalho = 4;
             var sheetmodelo = arquivoExcel.Workbook.Worksheets["Modelo"];
             sheetmodelo.Cells[1, 1, tamanhocabecalho, numerocolunas].Copy(sheetselecionado.Cells[linha, 1, linha + tamanhocabecalho, numerocolunas]);
+            sheetselecionado.Cells[linha, 1].Value = titulo;
             return linha + tamanhocabecalho;
+        }
+
+        internal void InserirTitulo(int linha, string key)
+        {
+            sheetselecionado.Cells[linha, 1].Value = key;
         }
 
         internal void InsereTotal(int linha, int count)

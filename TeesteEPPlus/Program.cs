@@ -32,13 +32,18 @@ namespace TeesteEPPlus
 
                 handler.SelecionarSheet("Planilha1");
 
-                linha = handler.CopiarCabecalho(linha);
+                foreach (var grupo in grupos)
+                {
+                    linha = handler.CopiarCabecalho(linha, grupo.Key);
 
-                handler.SetFormatacaoLinhas(linha, lista.Count);
+                    handler.SetFormatacaoLinhas(linha, grupo.Lista.Count);
 
-                handler.InserirValores(linha, lista);
+                    handler.InserirValores(linha, grupo.Lista);
 
-                handler.InsereTotal(linha + lista.Count, lista.Count);
+                    handler.InsereTotal(linha + grupo.Lista.Count, grupo.Lista.Count);
+
+                    linha += grupo.Lista.Count + 3;
+                }                
 
                 handler.SalvaExcel();
             }
